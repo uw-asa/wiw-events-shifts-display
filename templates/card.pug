@@ -1,0 +1,10 @@
+div(class='card m-1 d-inline-block bg-transparent')
+  div.card-header
+    h3.card-title #{cardTitle}
+  div.card-body
+    ul(class='list-group list-group-flush list-unstyled')
+      each shift in shifts
+        if shift.now
+          li.shift-item.text-success= shift.str
+        else
+          li.shift-item= shift.str

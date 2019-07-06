@@ -1,0 +1,28 @@
+html {
+  background-color: black;
+}
+
+body {
+  background-color: black;
+  background-image: url("static/img/shelley-pauls-uJNC2QzJJoI-unsplash-1080.jpg");
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+}
+
+h1, h4, p, span, .card-title, .shift-item {
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+.shift-item {
+  font-size: 24px;
+}
+
+#content {
+  -webkit-column-count: 3; /* Chrome, Safari, Opera */
+  -moz-column-count: 3; /* Firefox */
+  overflow: hidden;
+  column-count: 3;
+  height: 900px;
+}

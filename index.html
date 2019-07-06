@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <title>Events Schedule</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="static/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+    	
+    <script type="text/javascript" src="static/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="static/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div id="header" class="row">
+        <div class="col">
+          <h1 class="display-2 text-center">Shifts and Events Schedule</h1>
+        </div>
+      </div>
+      <div class="row" id="schedule">
+        <div id="content" class="col flex-column flex-wrap">
+        </div>
+      </div>
+      <div class="row">
+        <div id="clock-row" class="col flex-column flex-wrap">
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <span id="reload-interval"></span>
+    </footer>
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+  </body>
+</html>

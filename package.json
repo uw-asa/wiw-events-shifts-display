@@ -1,0 +1,31 @@
+{
+  "name": "When I Work / Events - Shifts Display",
+  "version": "1.0.1",
+  "description": "Shift display for Events Services, pulling data from the When I Work API",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/uw-it-cte/wiw-events-shifts-display.git",
+  "keywords": [
+    "electron",
+    "node",
+    "docker",
+    "javascript",
+    "pug",
+    "uw",
+    "digital",
+    "signage",
+    "wheniwork"
+  ],
+  "author": "Chase Sawyer",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {
+    "axios": "^0.19.0",
+    "dotenv": "^8.0.0",
+    "electron": "^5.0.5",
+    "moment": "^2.24.0",
+    "pug": "^2.0.4"
+  }
+}
