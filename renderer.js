@@ -75,7 +75,7 @@ function markupClock() {
 
 function showClock() {
   setTimeout(() => {
-    const target = document.getElementById('clock-row');
+    const target = document.getElementById('clock');
     target.innerHTML = markupClock();
     showClock();
   }, 1000);

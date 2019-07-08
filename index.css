@@ -3,26 +3,71 @@ html {
 }
 
 body {
-  background-color: black;
-  background-image: url("static/img/shelley-pauls-uJNC2QzJJoI-unsplash-1080.jpg");
-  background-repeat: no-repeat;
-  background-position: top;
-  background-size: cover;
+  height: 1080px;
 }
 
-h1, h4, p, span, .card-title, .shift-item {
+div#main {
+  background-image: url("static/img/UW-background-body.png");
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: auto;
+}
+
+span, .card-title, .shift-item {
   color: white;
   text-shadow: 1px 1px 2px black;
 }
 
 .shift-item {
+  color: lightgray;
+}
+
+#title h1, #clock h4 {
+  color: #4b2e83
+}
+
+.shift-item {
   font-size: 24px;
+  padding-left: 2rem;
 }
 
 #content {
-  -webkit-column-count: 3; /* Chrome, Safari, Opera */
-  -moz-column-count: 3; /* Firefox */
+  -webkit-column-count: 2; /* Chrome, Safari, Opera */
+  -moz-column-count: 2; /* Firefox */
+  column-count: 2;
   overflow: hidden;
-  column-count: 3;
-  height: 900px;
+  height: 962px; /* from image size */
+}
+
+footer {
+  position: fixed; /* from image size */
+  bottom: 0px; /* from image size */
+  left: 0px; /* from image size */
+  background-image: url("static/img/UW-background-footer.png");
+  width: 100%;
+  height: 118px; /* from image size */
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+}
+
+footer>div {
+  padding: 2rem 1rem 2rem 1rem;
+}
+
+#reload-interval {
+  position: fixed;
+  bottom: 0px;
+  left: 150px;
+}
+
+.card, .card div {
+  background-color: transparent !important;
+  border: none !important;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.card-body {
+  padding-top: 0 !important;
 }

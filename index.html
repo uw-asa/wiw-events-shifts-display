@@ -13,24 +13,27 @@
   </head>
 
   <body>
-    <div class="container-fluid">
-      <div id="header" class="row">
-        <div class="col">
-          <h1 class="display-2 text-center">Shifts and Events Schedule</h1>
-        </div>
-      </div>
+    <div id="main" class="container-fluid">
       <div class="row" id="schedule">
         <div id="content" class="col flex-column flex-wrap">
-        </div>
-      </div>
-      <div class="row">
-        <div id="clock-row" class="col flex-column flex-wrap">
         </div>
       </div>
     </div>
 
     <footer>
-      <span id="reload-interval"></span>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <span id="reload-interval"></span>
+          </div>
+          <div id="clock" class="col">
+            <!-- clock -->
+          </div>
+          <div id="title" class="col">
+            <h1 class="text-right">Upcoming Event Shifts</h1>
+          </div>
+        </div>
+      </div>
     </footer>
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>
