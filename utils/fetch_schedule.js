@@ -42,7 +42,7 @@ function getSchedule(days = process.env.WIW_LOOKAHEAD_DAYS || 7) {
       method: 'get',
       params: {
         location_id: process.env.WIW_API_LOCATION,
-        start: moment().startOf('day').format('YYYY-MM-DD HH:mm:ss'),
+        start: moment().format('YYYY-MM-DD HH:mm:ss'),
         end: moment().add(days, 'days').endOf('day').format('YYYY-MM-DD HH:mm:ss'),
       },
       headers: {
