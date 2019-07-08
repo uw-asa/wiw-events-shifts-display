@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  height: 1080px;
+  height: 1079px;
 }
 
 div#main {
@@ -41,7 +41,7 @@ span, .card-title, .shift-item {
 
 footer {
   position: fixed; /* from image size */
-  bottom: 0px; /* from image size */
+  bottom: 1px; /* from image size */
   left: 0px; /* from image size */
   background-image: url("static/img/UW-background-footer.png");
   width: 100%;
@@ -57,7 +57,7 @@ footer>div {
 
 #reload-interval {
   position: fixed;
-  bottom: 0px;
+  bottom: 5px;
   left: 150px;
 }
 
