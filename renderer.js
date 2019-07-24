@@ -82,7 +82,7 @@ function showClock() {
 }
 
 window.onload = () => {
-  const initialInterval = 10000; // milliseconds
+  const initialInterval = 30000; // milliseconds
   handleReload(initialInterval, initialInterval);
   showClock();
 };
