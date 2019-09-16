@@ -15,22 +15,30 @@ function parseTitleFromNotes(notes) {
  * @param {*} jsonData
  */
 function parseDataForDisplay(jsonData) {
-  const displayData = jsonData.shifts.map((shift) => {
-    const title = parseTitleFromNotes(shift.notes);
-    const shiftUser = jsonData.users.filter(user => user.id === shift.user_id)[0];
-    const shiftSite = jsonData.sites.filter(site => site.id === shift.site_id)[0];
-    return {
-      title,
-      uid: [shift.site_id, title, moment(shift.start_time).format('YYYYMMDD')].join('\n'),
-      location: shiftSite.name,
-      user: {
-        name: shiftUser.first_name.concat(' ', shiftUser.last_name),
-        netid: shiftUser.employee_code,
-      },
-      start_time: shift.start_time,
-      end_time: shift.end_time,
-    };
+  // console.log(jsonData);
+  let displayData = jsonData.shifts.map((shift) => {
+    try {
+      const title = parseTitleFromNotes(shift.notes);
+      const shiftUser = jsonData.users.filter(user => user.id === shift.user_id)[0];
+      const shiftSite = jsonData.sites.filter(site => site.id === shift.site_id)[0];
+      return {
+        title,
+        uid: [shift.site_id, title, moment(shift.start_time).format('YYYYMMDD')].join('\n'),
+        location: shiftSite.name,
+        user: {
+          name: shiftUser.first_name.concat(' ', shiftUser.last_name),
+          netid: shiftUser.employee_code,
+        },
+        start_time: shift.start_time,
+        end_time: shift.end_time,
+      };
+    } catch (e) {
+      console.warn('ParseData|Malformed shift information: ' + e);
+      return undefined;
+    }
   });
+  // Filter out undefined data by using the Boolean constructor on array elements (rejects all falsy values)
+  displayData = displayData.filter( Boolean );
   // console.log(displayData);
   return displayData.sort((a, b) => moment(a.start_time).diff(moment(b.start_time)));
 }

@@ -59,12 +59,13 @@ function handleReload(interval, initialInterval) {
         handleReload(initialInterval, initialInterval);
       } else {
         // Axios success, but not a 200 return status
-        handleReload(interval * 2, initialInterval);
+        handleReload(Math.max(interval * 2, parseInt(process.env.MAX_REFRESH_INTERVAL)), initialInterval);
       }
     })
-      .catch(() => {
+      .catch((e) => {
         // Axios request failure / promise rejection handling
-        handleReload(interval * 2, initialInterval);
+        console.error(e);
+        handleReload(Math.max(interval * 2, parseInt(process.env.MAX_REFRESH_INTERVAL)), initialInterval);
       });
   }, interval);
 }
