@@ -1,3 +1,5 @@
+# This dockerfile is specifically generated to target a raspberry pi platform and will not run on different host architectures
+
 FROM balenalib/raspberrypi3-ubuntu-node:10.16-bionic
 
 # Avoid debconf from asking about keyboard config - there is no keyboard - set debconf to noninteractive

@@ -5,8 +5,21 @@ const axiosInstance = axios.create({
   baseURL: 'https://api.wheniwork.com/2/',
 });
 
+/**
+ * Event titles and operator notes are all one string from When I Work. This method separates out the
+ * event title from the private notes. The separator is controlled via env variable, as well as how to
+ * handle the separator: whether or not the separator is surrounded by whitespace, or if it is expected
+ * to be all one piece eg:
+ *   - "Event Title|Notes"
+ *   - "Event Title | Notes"
+ * 
+ * @param {String} notes The notes containing a title which will be separated from the notes
+ * @returns {String} The title, whitespace trimmed, without any content following the separator
+ */
 function parseTitleFromNotes(notes) {
-  return notes.split(process.env.NOTES_TITLE_SEPARATOR)[0].trim();
+  const separator = process.env.NOTES_TITLE_SEPARATOR;
+  const whitespace = !!process.env.SEPARATOR_WHITESPACE
+  return whitespace ? notes.split(` ${separator} `)[0].trim() : notes.split(separator)[0].trim();
 }
 
 /**
