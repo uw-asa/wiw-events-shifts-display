@@ -1,6 +1,6 @@
 {
   "name": "when-i-work-events-shifts-display",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Shift display for Events Services, pulling data from the When I Work API",
   "main": "main.js",
   "scripts": {
@@ -22,9 +22,9 @@
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {
-    "axios": "^0.19.0",
-    "dotenv": "^8.0.0",
-    "electron": "^5.0.8",
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "electron": "^8.0.0",
     "moment": "^2.24.0",
     "pug": "^2.0.4"
   }
