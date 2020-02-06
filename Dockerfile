@@ -49,6 +49,9 @@ COPY ./package.json .
 
 RUN npm install && npm cache clean --force && rm -rf /tmp/*
 
+# Test to ensure that electron was installed by checking if the electron binaries were downloaded to the /dist/ folder
+RUN test -d "./node_modules/electron/dist/" || exit 1
+
 COPY . .
 ## uncomment if you want systemd
 ENV INITSYSTEM on
