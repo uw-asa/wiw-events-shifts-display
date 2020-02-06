@@ -17,6 +17,18 @@ npm start
 
 Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
 
+## Updates
+
+Dependency updates: update the base image in `Dockerfile` and update application dependencies in `package.json`.
+
+### Base Image
+
+[Base image list](https://www.balena.io/docs/reference/base-images/base-images/) - Choose a recent linux / node version that also supports the selected version of Electron.
+
+### Electron Updates
+
+Note: build depends on there being a prebuilt ARM architecture version of electron that can be downloaded during package install. For newer versions of electron, these are not always available. The build will fail if the necessary files are not acquired.
+
 ## Resources for Learning Electron
 
 - [electronjs.org/docs](https://electronjs.org/docs) - all of Electron's documentation
