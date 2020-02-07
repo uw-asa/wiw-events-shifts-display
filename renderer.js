@@ -1,7 +1,7 @@
 // This file is required by the index.html file and will
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
-const getSchedule = require('./utils/fetch_schedule');
+const getWiwSchedule = require('./utils/fetch_wiw_schedule');
 const moment = require('moment');
 const pug = require('pug');
 
@@ -52,7 +52,7 @@ function handleReload(interval, initialInterval) {
   const reloadSpan = document.getElementById('reload-interval');
   reloadSpan.innerHTML = `Reloading every ${interval / 1000}s`;
   setTimeout(() => {
-    getSchedule().then((result) => {
+    getWiwSchedule().then((result) => {
       if (result.status === 200) {
         const target = document.getElementById('content');
         target.innerHTML = markupResults(result.data).join('');
