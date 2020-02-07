@@ -46,7 +46,9 @@ function parseDataForDisplay(jsonData) {
         end_time: shift.end_time,
       };
     } catch (e) {
-      console.warn('ParseData|Malformed shift information: ' + e);
+      // Uncomment to debug parsing issues.
+      // Expected: spitting out an unending stream of "cannot read property 'name' of undefined"
+      // console.warn('ParseData|Malformed shift information: ' + e);
       return undefined;
     }
   });

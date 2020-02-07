@@ -13,7 +13,7 @@ umount /dev/shm && mount -t tmpfs shm /dev/shm
 rm /tmp/.X0-lock &>/dev/null || true
 
 # Specific configuration for raspberry pi: set up and start using the pi TFT LCD;
-# If no LCD attached, assume ser're using the built-in HDMI output.
+# If no LCD attached, assume we're using the built-in HDMI output.
 if [ ! -c /dev/fb1 ] && [ "$TFT" = "1" ]; then
   modprobe spi-bcm2708 || true
   modprobe fbtft_device name=pitft verbose=0 rotate=${TFT_ROTATE:-0} || true

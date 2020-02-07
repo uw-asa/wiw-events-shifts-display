@@ -1,6 +1,6 @@
 # This dockerfile is specifically generated to target a raspberry pi platform and will not run on different host architectures
 
-FROM balenalib/raspberrypi3-ubuntu-node:10.16-bionic
+FROM balenalib/raspberrypi3-ubuntu-node:12.14-bionic
 
 # Avoid debconf from asking about keyboard config - there is no keyboard - set debconf to noninteractive
 ENV DEBIAN_FRONTEND noninteractive
@@ -48,6 +48,9 @@ RUN echo "#!/bin/bash" > /etc/X11/xinit/xserverrc \
 COPY ./package.json .
 
 RUN npm install && npm cache clean --force && rm -rf /tmp/*
+
+# Test to ensure that electron was installed by checking if the electron binaries were downloaded to the /dist/ folder
+RUN test -d "./node_modules/electron/dist/" || exit 1
 
 COPY . .
 ## uncomment if you want systemd
