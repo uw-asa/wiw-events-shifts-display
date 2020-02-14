@@ -1,3 +1,7 @@
+:root {
+  --main-content-height: 962px;
+}
+
 html {
   background-color: black;
 }
@@ -13,7 +17,7 @@ div#main {
   background-size: auto;
 }
 
-span, .card-title, .shift-item {
+span, .card-title, .shift-item, .shift-item-sm {
   color: white;
   text-shadow: 1px 1px 2px black;
 }
@@ -31,12 +35,34 @@ span, .card-title, .shift-item {
   padding-left: 2rem;
 }
 
+.shift-item-sm {
+  font-size: 18px;
+}
+
 #content {
   -webkit-column-count: 2; /* Chrome, Safari, Opera */
   -moz-column-count: 2; /* Firefox */
   column-count: 2;
   overflow: hidden;
-  height: 962px; /* from image size */
+  height: var(--main-content-height);
+}
+
+.content-column {
+  --header-height: 42px;
+  overflow: hidden;
+  height: var(--main-content-height);
+}
+
+.column-header {
+  height: var(--header-height);
+}
+
+.headed-content {
+  height: calc(var(--main-content-height) - var(--header-height));
+}
+
+.headed-content>div {
+  height: calc(var(--main-content-height) - var(--header-height));
 }
 
 footer {
@@ -70,4 +96,8 @@ footer>div {
 
 .card-body {
   padding-top: 0 !important;
+}
+
+td.time-width {
+  max-width: 100px;
 }
