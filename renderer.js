@@ -147,7 +147,7 @@ function handleReload(interval, initialInterval) {
   function errorBackOff(e) {
     console.error(e);
     handleReload(
-      Math.max(interval + initialInterval, parseInt(process.env.MAX_REFRESH_INTERVAL, 10)),
+      Math.max(interval + initialInterval, parseInt(process.env.MAX_REFRESH_INTERVAL * 1000, 10)),
       initialInterval,
     );
   }
