@@ -2,4 +2,3 @@ node_modules/
 .env
 *-sample.json
 *-sample.xml
-customLocationMapping.js

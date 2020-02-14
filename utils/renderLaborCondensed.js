@@ -6,8 +6,19 @@ const pug = require('pug');
 // const eventCardTemplate = pug.compileFile('../templates/eventShiftCard.pug');
 const laborCardTemplate = pug.compileFile('./templates/laborCard.pug');
 
+let CUSTOM_NAMING;
 // load shift type designation from configuration
-const CUSTOM_MAPPING = require('./customLocationMapping');
+if (process.env.LABOR_MODE_CUSTOM_NAMING) {
+  const values = process.env.LABOR_MODE_CUSTOM_NAMING.split(',');
+  CUSTOM_NAMING = new Map();
+  values.forEach((element) => {
+    const key = parseInt(element.split(':')[0], 10);
+    const value = element.split(':')[1];
+    CUSTOM_NAMING.set(key, value);
+  });
+} else {
+  CUSTOM_NAMING = null;
+}
 
 function markupResults(data) {
   const cards = [];
@@ -19,7 +30,7 @@ function markupResults(data) {
       const card = cards.splice(cardIndex.get(shiftDate), 1)[0];
       card.shifts.push({
         now: moment().isBetween(shift.start_time, shift.end_time, 'minute'),
-        customIconText: CUSTOM_MAPPING[shift.locationId].abbreviation,
+        customIconText: CUSTOM_NAMING ? CUSTOM_NAMING.get(shift.locationId) : '',
         personName: shift.user.name,
         locationName: shift.locationName,
         inTime: moment(shift.start_time).format('h:mm a'),
@@ -32,7 +43,7 @@ function markupResults(data) {
         title: moment(shift.start_time).format('dddd MMM Do'), // sets card header
         shifts: [{
           now: moment().isBetween(shift.start_time, shift.end_time, 'minute'),
-          customIconText: CUSTOM_MAPPING[shift.locationId].abbreviation,
+          customIconText: CUSTOM_NAMING ? CUSTOM_NAMING.get(shift.locationId) : '',
           personName: shift.user.name,
           locationName: shift.locationName,
           inTime: moment(shift.start_time).format('h:mm a'),
