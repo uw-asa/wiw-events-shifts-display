@@ -1,5 +1,25 @@
 // Use this file as a starting point for your project's .eslintrc.
 // Copy this file, and add rule overrides as needed.
 {
-  "extends": "airbnb-base"
+  "extends": [
+    "airbnb-base",
+  ],
+  "plugins": [
+    "mocha"
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "mocha": true
+  },
+  "rules": {
+    "max-len": [
+      "warn", {
+        "code": 120,
+        "comments": 100,
+        "ignoreTrailingComments": true
+      }
+    ]
+  }
 }
