@@ -2,23 +2,23 @@ const axios = require('axios');
 const moment = require('moment');
 
 const axiosInstance = axios.create({
-  baseURL: 'https://api.wheniwork.com/2/',
+  baseURL: process.env.WIW_API_URL,
 });
 
 /**
- * Event titles and operator notes are all one string from When I Work. This method separates out the
- * event title from the private notes. The separator is controlled via env variable, as well as how to
- * handle the separator: whether or not the separator is surrounded by whitespace, or if it is expected
- * to be all one piece eg:
+ * Event titles and operator notes are all one string from When I Work. This method separates out
+ * the event title from the private notes. The separator is controlled via env variable,
+ * as well as how to handle the separator: whether or not the separator is surrounded by
+ * whitespace, or if it is expected to be all one piece eg:
  *   - "Event Title|Notes"
  *   - "Event Title | Notes"
- * 
+ *
  * @param {String} notes The notes containing a title which will be separated from the notes
  * @returns {String} The title, whitespace trimmed, without any content following the separator
  */
 function parseTitleFromNotes(notes) {
   const separator = process.env.NOTES_TITLE_SEPARATOR;
-  const whitespace = !!process.env.SEPARATOR_WHITESPACE
+  const whitespace = !!process.env.SEPARATOR_WHITESPACE;
   return whitespace ? notes.split(` ${separator} `)[0].trim() : notes.split(separator)[0].trim();
 }
 
@@ -31,13 +31,14 @@ function parseDataForDisplay(jsonData) {
   // console.log(jsonData);
   let displayData = jsonData.shifts.map((shift) => {
     try {
-      const title = parseTitleFromNotes(shift.notes);
-      const shiftUser = jsonData.users.filter(user => user.id === shift.user_id)[0];
-      const shiftSite = jsonData.sites.filter(site => site.id === shift.site_id)[0];
+      const notesTitle = parseTitleFromNotes(shift.notes);
+      const shiftUser = jsonData.users.filter((user) => user.id === shift.user_id)[0];
+      const shiftSite = jsonData.sites.filter((site) => site.id === shift.site_id)[0];
       return {
-        title,
-        uid: [shift.site_id, title, moment(shift.start_time).format('YYYYMMDD')].join('\n'),
-        location: shiftSite.name,
+        notesTitle,
+        eventShiftIdentity: [shift.site_id, notesTitle, moment(shift.start_time).format('YYYYMMDD')].join('\n'),
+        locationName: shiftSite.name,
+        locationId: shift.location_id,
         user: {
           name: shiftUser.first_name.concat(' ', shiftUser.last_name),
           netid: shiftUser.employee_code,
@@ -52,13 +53,14 @@ function parseDataForDisplay(jsonData) {
       return undefined;
     }
   });
-  // Filter out undefined data by using the Boolean constructor on array elements (rejects all falsy values)
-  displayData = displayData.filter( Boolean );
+  // Filter out undefined data by using the Boolean constructor on array elements
+  // (rejects all falsy values)
+  displayData = displayData.filter(Boolean);
   // console.log(displayData);
   return displayData.sort((a, b) => moment(a.start_time).diff(moment(b.start_time)));
 }
 
-function getSchedule(days = process.env.WIW_LOOKAHEAD_DAYS || 7) {
+function getWiwSchedule(days = process.env.WIW_LOOKAHEAD_DAYS || 7) {
   return new Promise((resolve, reject) => {
     axiosInstance.request({
       url: 'shifts',
@@ -98,8 +100,12 @@ function getSchedule(days = process.env.WIW_LOOKAHEAD_DAYS || 7) {
           status: response.status,
         });
       })
-      .catch(error => reject(error));
+      .catch((error) => reject(error));
   });
 }
 
-module.exports = getSchedule;
+module.exports = {
+  getWiwSchedule,
+  parseDataForDisplay,
+  parseTitleFromNotes,
+};
