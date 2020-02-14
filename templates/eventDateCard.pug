@@ -1,0 +1,23 @@
+div(class='card m-1 p-0 d-inline-block w-100')
+  div.card-header
+    h3.card-title #{cardTitle}
+  div.card-body.ml-0
+    table(class='table table-sm event-date-table')
+      tbody
+        each event in events
+          if event.now
+            tr.font-weight-bold.shift-item
+              td.room-code #{event.room}
+              td.text-truncate.event-title #{event.title}
+              td.time-width #{event.bookStart}
+              td.time-width #{event.eventStart}
+              td.time-width #{event.eventEnd}
+              td.time-width #{event.bookEnd}
+          else
+            tr.shift-item
+              td.room-code #{event.room}
+              td.text-truncate.event-title #{event.title}
+              td.time-width #{event.bookStart}
+              td.time-width #{event.eventStart}
+              td.time-width #{event.eventEnd}
+              td.time-width #{event.bookEnd}

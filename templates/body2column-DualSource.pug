@@ -1,0 +1,14 @@
+div.row
+  //- !{} renders inner html without escaping
+  div#content-left(class='col content-column')
+    div.row.column-header
+      div.col
+        h3.text-center.text-light #{leftHeader}
+    div.row.headed-content
+      div(class="col d-flex flex-column flex-wrap") !{contentLeft}
+  div#content-right(class='col content-column')
+    div.row.column-header
+      div.col
+        h3.text-center.text-light #{rightHeader}
+    div.row.headed-content
+      div(class="col d-flex flex-column flex-wrap") !{contentRight}

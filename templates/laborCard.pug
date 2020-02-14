@@ -1,0 +1,23 @@
+div(class='card p-0 d-inline-block w-100')
+  div.card-header
+    h4.card-title #{cardTitle}
+  div.card-body.ml-0
+    table(class='table table-sm')
+      tbody
+        each shift in shifts
+          if shift.now
+            tr.font-weight-bold.shift-item-sm
+              if shift.customIconText
+                td #{shift.customIconText}
+              td #{shift.personName}
+              td #{shift.locationName}
+              td #{shift.inTime}
+              td #{shift.outTime}
+          else
+            tr.shift-item-sm
+              if shift.customIconText
+                td #{shift.customIconText}
+              td #{shift.personName}
+              td #{shift.locationName}
+              td #{shift.inTime}
+              td #{shift.outTime}

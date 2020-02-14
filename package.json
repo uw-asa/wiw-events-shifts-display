@@ -1,10 +1,11 @@
 {
   "name": "when-i-work-events-shifts-display",
-  "version": "1.0.2",
+  "version": "2.0.9",
   "description": "Shift display for Events Services, pulling data from the When I Work API",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "test": "mocha"
   },
   "repository": "https://github.com/uw-it-cte/wiw-events-shifts-display.git",
   "keywords": [
@@ -20,7 +21,15 @@
   ],
   "author": "Chase Sawyer",
   "license": "MIT",
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-mocha": "^6.2.2",
+    "mocha": "^7.0.1",
+    "nyc": "^15.0.0"
+  },
   "dependencies": {
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
