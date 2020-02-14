@@ -23,10 +23,6 @@ Note: If you're using Linux Bash for Windows, [see this guide](https://www.howto
 
 Sample configuration file provided in `sample.env`
 
-- `DISPLAY_CORNER_TITLE=WIW and EMS Display`
-
-  Sets the display title in the corner of the screen. Defaults to 'Events Display'.
-
 - `WIW_API_TOKEN=when-i-work-login-token`
 
   Sets the login token for the When I Work API. Necessary to load any data from When I Work.
@@ -34,30 +30,6 @@ Sample configuration file provided in `sample.env`
 - `WIW_API_URL=https://api.wheniwork.com/2/`
 
   Base URL for When I Work's API. Shouldn't change too much.
-
-- `NOTES_TITLE_SEPARATOR=-`
-
-  Titles for events are in the notes for shifts in When I Work for our particular environment. This is subject to change, and thus the separator can be configured. Works in concert with `SEPARATOR_WHITESPACE`.
-
-- `SEPARATOR_WHITESPACE=true`
-
-  Configures whether or not the separator is surrounded by whitespace or not. In this example the above separator would be a dash surrounded by whitespace.
-
-- `WIW_API_LOCATION=123456`
-
-  API Location ID to search When I Work for shift data. Can be set to a comma-delimited list, such as `123456,234567,345678` to get shifts for multiple locations at once.
-
-- `WIW_LOOKAHEAD_DAYS=5`
-
-  How many days worth of data to query from the API each time. Defaults to 7.
-
-- `EMS_LOOKAHEAD_DAYS=5`
-
-  How many days worth of data to query from the API each time. Defaults to 7.
-
-- `MAX_REFRESH_INTERVAL=300`
-
-  Seconds. Program will refetch data every 30 seconds by default. If any errors occur, including network issues, the refetch rate will slow down by 30 seconds per error until a successful cycle passes, at which point it will return to the default initial refetch rate. The maximum refetch rate puts an upper limit to this rate, so that it will at most wait 5 minutes between attempts.
 
 - `EMS_API_USER=username`
 
@@ -71,17 +43,17 @@ Sample configuration file provided in `sample.env`
 
   Root URL for the EMSAPI.
 
-- `EMS_BUILDINGS=1,2,3,4`
+- `NOTES_TITLE_SEPARATOR=-`
 
-  Building IDs in EMS to gather booking / event data for.
+  Titles for events are in the notes for shifts in When I Work for our particular environment. This is subject to change, and thus the separator can be configured. Works in concert with `SEPARATOR_WHITESPACE`.
 
-- `EMS_STATUSES=2,3,4,5`
+- `SEPARATOR_WHITESPACE=true`
 
-  Status IDs in EMS to gather booking / event data for.
+  Configures whether or not the separator is surrounded by whitespace or not. In this example the above separator would be a dash surrounded by whitespace.
 
-- `EMS_EVENT_TYPES=1,2,3,4,5,6,7,8,9`
+- `MAX_REFRESH_INTERVAL=300`
 
-  Event Type IDs in EMS to gather booking / event data for.
+  Seconds. Program will refetch data every 30 seconds by default. If any errors occur, including network issues, the refetch rate will slow down by 30 seconds per error until a successful cycle passes, at which point it will return to the default initial refetch rate. The maximum refetch rate puts an upper limit to this rate, so that it will at most wait 5 minutes between attempts.
 
 - `DISPLAY_RENDER_MODE_LEFT=EVENTS`
 - `DISPLAY_RENDER_MODE_RIGHT=EVENTS`
@@ -98,6 +70,38 @@ Sample configuration file provided in `sample.env`
 - `DISPLAY_RIGHT_COLUMN_TITLE=EMS Event List`
 
   When showing two separate columns of data (render modes for left and right are different) use these options to set the column header text.
+
+- `DISPLAY_CORNER_TITLE=WIW and EMS Display`
+
+  Sets the display title in the corner of the screen. Defaults to 'Events Display'.
+
+- `WIW_API_LOCATION=123456`
+
+  API Location ID to search When I Work for shift data. Can be set to a comma-delimited list, such as `123456,234567,345678` to get shifts for multiple locations at once.
+
+- `WIW_LOOKAHEAD_DAYS=5`
+
+  How many days worth of data to query from the API each time. Defaults to 7.
+
+- `EMS_LOOKAHEAD_DAYS=5`
+
+  How many days worth of data to query from the API each time. Defaults to 7.
+
+- `EMS_BUILDINGS=1,2,3,4`
+
+  Building IDs in EMS to gather booking / event data for.
+
+- `EMS_STATUSES=2,3,4,5`
+
+  Status IDs in EMS to gather booking / event data for.
+
+- `EMS_EVENT_TYPES=1,2,3,4,5,6,7,8,9`
+
+  Event Type IDs in EMS to gather booking / event data for.
+
+- `LABOR_MODE_CUSTOM_NAMING=123456:Event,234567:Office`
+
+  Naming to differentiate When I Work locations from each other when using the 'LABOR' layout, which has shifts in a condensed form.
 
 ## Updates
 
