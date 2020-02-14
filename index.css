@@ -99,5 +99,14 @@ footer>div {
 }
 
 td.time-width {
-  max-width: 100px;
+  min-width: 60px;
+}
+
+td.room-code {
+  min-width: 75px;
+}
+
+td.event-title {
+  min-width: 475px;
+  max-width: 475px;
 }
