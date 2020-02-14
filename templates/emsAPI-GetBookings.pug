@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+soap12:Envelope(xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap12='http://www.w3.org/2003/05/soap-envelope')
+  soap12:Body
+    GetBookings(xmlns="http://DEA.EMS.API.Web.Service/")
+      UserName #{username}
+      Password #{password}
+      StartDate #{startDateTime}
+      EndDate #{endDateTime}
+      Buildings
+        each val in buildings
+          int= val
+      Statuses
+        each val in statuses
+          int= val
+      if EventTypes
+        EventTypes
+          each val in eventTypes
+            int= val
+      ViewComboRoomComponents #{viewComboRooms}
