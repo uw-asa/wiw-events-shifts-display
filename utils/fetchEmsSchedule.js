@@ -14,11 +14,15 @@ const emsApiRequestXMLTemplate = pug.compileFile('./templates/emsAPI-GetBookings
 // configured in env.
 let buildingIDs;
 let statusIDs;
-let eventTypeIDs;
+let eventTypeIDs; // optional
 try {
   buildingIDs = process.env.EMS_BUILDINGS.split(',').map((x) => parseInt(x, 10));
   statusIDs = process.env.EMS_STATUSES.split(',').map((x) => parseInt(x, 10));
-  eventTypeIDs = process.env.EMS_EVENT_TYPES.split(',').map((x) => parseInt(x, 10));
+  if (process.env.EMS_EVENT_TYPES) {
+    eventTypeIDs = process.env.EMS_EVENT_TYPES.split(',').map((x) => parseInt(x, 10));
+  } else {
+    eventTypeIDs = null;
+  }
 } catch (e) {
   throw new Error(`Unexpected Error parsing configuration: ${e}`);
 }
@@ -56,7 +60,7 @@ function parseDataForDisplay(xmlHell) {
     try {
       const bookStart = bookingElements.getElementsByTagName('TimeBookingStart')[0].innerHTML;
       return {
-        eventDateIdentity: moment(bookStart).format('dddd, MMMM Do'),
+        eventDateIdentity: moment(bookStart).format('ddd, MMM Do'),
         eventName: bookingElements.getElementsByTagName('EventName')[0].innerHTML,
         room: bookingElements.getElementsByTagName('RoomCode')[0].innerHTML,
         bookStart,
