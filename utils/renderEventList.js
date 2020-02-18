@@ -7,6 +7,17 @@ const pug = require('pug');
 
 const eventDateCardTemplate = pug.compileFile('./templates/eventDateCard.pug');
 
+let highlight = null;
+if (process.env.EMS_STATUS_ROW_HIGHLIGHT) {
+  highlight = new Map();
+  const highlightArr = process.env.EMS_STATUS_ROW_HIGHLIGHT.split(',');
+  highlightArr.forEach((config) => {
+    const key = config.split(':')[0];
+    const color = config.split(':')[1];
+    highlight.set(key, color);
+  });
+}
+
 /**
  *
  *
@@ -35,6 +46,7 @@ function markupResults(data) {
       eventStart: formatTimes(event.eventStart),
       eventEnd: formatTimes(event.eventEnd),
       bookEnd: formatTimes(event.bookEnd),
+      highlight: highlight ? highlight.get(event.eventStatusId) : null,
     };
   }
 

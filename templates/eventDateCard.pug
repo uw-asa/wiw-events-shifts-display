@@ -6,7 +6,7 @@ div(class='card m-1 p-0 d-inline-block w-100')
       tbody
         each event in events
           if event.now
-            tr.font-weight-bold.shift-item
+            tr(style=`background-color: ${event.highlight ? event.highlight : '#00000000'}`).font-weight-bold.shift-item
               td.room-code #{event.room}
               td.text-truncate.event-title #{event.title}
               td.time-width #{event.bookStart}
@@ -14,7 +14,7 @@ div(class='card m-1 p-0 d-inline-block w-100')
               td.time-width #{event.eventEnd}
               td.time-width #{event.bookEnd}
           else
-            tr.shift-item
+            tr(style=`background-color: ${event.highlight ? event.highlight : '#00000000'}`).shift-item
               td.room-code #{event.room}
               td.text-truncate.event-title #{event.title}
               td.time-width #{event.bookStart}
