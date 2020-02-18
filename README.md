@@ -102,6 +102,10 @@ Sample configuration file provided in `sample.env`
 - `LABOR_MODE_CUSTOM_NAMING=123456:Event,234567:Office`
 
   Naming to differentiate When I Work locations from each other when using the 'LABOR' layout, which has shifts in a condensed form.
+  
+- `EMS_Status_ROW_HIGHLIGHT=2:#ffffff50,3:#aabbccdd`
+
+  Set row highlight colors (HEXA) (hex w/ alpha) associated event status ID (ID first). Applies to EMS event date list only. Separate each state setting from the color value by commas (`,`). Separate status ID and color code by colons (`:`).
 
 ## Updates
 
