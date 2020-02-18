@@ -60,9 +60,10 @@ function parseDataForDisplay(xmlHell) {
     try {
       const bookStart = bookingElements.getElementsByTagName('TimeBookingStart')[0].innerHTML;
       return {
-        eventDateIdentity: moment(bookStart).format('ddd, MMM Do'),
+        eventDateIdentity: moment(bookStart).format('ddd MMM Do'),
         eventName: bookingElements.getElementsByTagName('EventName')[0].innerHTML,
         room: bookingElements.getElementsByTagName('RoomCode')[0].innerHTML,
+        eventStatusId: bookingElements.getElementsByTagName('StatusID')[0].innerHTML,
         bookStart,
         eventStart: bookingElements.getElementsByTagName('TimeEventStart')[0].innerHTML,
         eventEnd: bookingElements.getElementsByTagName('TimeEventEnd')[0].innerHTML,
