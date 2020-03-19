@@ -119,6 +119,36 @@ Dependency updates: update the base image in `Dockerfile` and update application
 
 Note: build depends on there being a prebuilt ARM architecture version of electron that can be downloaded during package install. For newer versions of electron, these are not always available. The build will fail if the necessary files are not acquired.
 
+## Building Image for Deployment
+
+There are 2 options; build in the cloud with Balena Cloud or build the image locally using Docker (Docker must be installed).
+
+### Preflight Checks
+
+Use Ensure files are up to date and that you are on the correct code branch. Run tests to ensure the code is ready for deployment. Run the app locally on the development machine with `npm start` and make sure things appear correct, check the dev console while the app is running with `Ctrl+Shift+I` and look for http errors or console errors. You also must install the [Balena CLI][1].
+
+### Locally with Docker
+
+1. Open a console to the project root (where `Dockerfile` and `package.json` are)
+2. Log into the Balena console with `balena login`
+3. Build the image
+
+> `balena build --application [BALENA APP NAME] --logs .`
+
+**Note(s):** Don't forget the trailing `.` which designates the currernt directory as the source for the code. Substitute in the name of your app for `[BALENA APP NAME]` which corresponds to the application name on the Balena Cloud dashboard. Add `--logs` to see the complete build details. For complete CLI documentation and other options see the [Balena CLI documentation][2].
+
+4. Push the built image to Balena Cloud
+
+> `balena deploy [BALENA APP NAME]`
+
+### Building with Balena Cloud
+
+1. Open a console to the project root (where `Dockerfile` and `package.json` are)
+2. Log into the Balena console with `balena login`
+3. Push code to Balena's build servers and wait for the image to be deployed automatically
+
+> `balena push [BALENA APP NAME] .`
+
 ## Resources for Learning Electron
 
 - [electronjs.org/docs](https://electronjs.org/docs) - all of Electron's documentation
@@ -133,3 +163,6 @@ This project got started from the Electron quick start: https://github.com/elect
 ## License
 
 [MIT](LICENSE)
+
+[1]: https://github.com/balena-io/balena-cli/blob/master/INSTALL.md
+[2]: https://www.balena.io/docs/reference/balena-cli/#build-source
