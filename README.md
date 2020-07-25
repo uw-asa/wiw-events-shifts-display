@@ -135,7 +135,7 @@ Use Ensure files are up to date and that you are on the correct code branch. Run
 
 > `balena build --application [BALENA APP NAME] --logs .`
 
-**Note(s):** Don't forget the trailing `.` which designates the currernt directory as the source for the code. Substitute in the name of your app for `[BALENA APP NAME]` which corresponds to the application name on the Balena Cloud dashboard. Add `--logs` to see the complete build details. For complete CLI documentation and other options see the [Balena CLI documentation][2].
+**Note(s):** Don't forget the trailing `.` which designates the current directory as the source for the code. Substitute in the name of your app for `[BALENA APP NAME]` which corresponds to the application name on the Balena Cloud dashboard. Add `--logs` to see the complete build details. For complete CLI documentation and other options see the [Balena CLI documentation][2].
 
 4. Push the built image to Balena Cloud
 
