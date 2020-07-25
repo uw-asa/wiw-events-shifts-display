@@ -29,7 +29,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libsmbclient \
   libssh-4 \
   fbset \
-  libexpat-dev && rm -rf /var/lib/apt/lists/*
+  libexpat-dev \
+  libraspberrypi-bin \
+  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/app
 
