@@ -33,7 +33,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
-    "electron": "^6.1.7",
+    "electron": "^9.4.0",
     "moment": "^2.24.0",
     "pug": "^2.0.4"
   }
