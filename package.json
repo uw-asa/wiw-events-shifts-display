@@ -1,6 +1,6 @@
 {
   "name": "when-i-work-events-shifts-display",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Shift display for Events Services, pulling data from the When I Work API",
   "main": "main.js",
   "scripts": {
