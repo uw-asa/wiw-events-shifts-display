@@ -1,6 +1,8 @@
 # This dockerfile is specifically generated to target a raspberry pi platform and will not run on different host architectures
 
-FROM balenalib/raspberrypi3-ubuntu-node:12.14-bionic
+# Balena base image reference: https://www.balena.io/docs/reference/base-images/base-images/
+# Device type pulled based on template variable for targeted fleet. Note that Fleets must share a similar architecture.
+FROM balenalib/%%BALENA_MACHINE_NAME%%-ubuntu-node:15.10.0-bionic
 
 # Avoid debconf from asking about keyboard config - there is no keyboard - set debconf to noninteractive
 ENV DEBIAN_FRONTEND noninteractive
@@ -18,7 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libdbus-1-dev \
   libgtk2.0-dev \
   libnotify-dev \
-  libgnome-keyring-dev \
+  # libgnome-keyring-dev \
   libgconf2-dev \
   libasound2-dev \
   libcap-dev \
@@ -30,7 +32,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libssh-4 \
   fbset \
   libexpat-dev \
-  libraspberrypi-bin \
+  # libraspberrypi-bin \
   && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/app

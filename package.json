@@ -1,6 +1,6 @@
 {
   "name": "when-i-work-events-shifts-display",
-  "version": "2.1.1",
+  "version": "2.1.3",
   "description": "Shift display for Events Services, pulling data from the When I Work API",
   "main": "main.js",
   "scripts": {
@@ -17,24 +17,25 @@
     "uw",
     "digital",
     "signage",
-    "wheniwork"
+    "wheniwork",
+    "ems"
   ],
   "author": "Chase Sawyer",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^4.2.0",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-mocha": "^6.3.0",
-    "mocha": "^7.1.1",
-    "nyc": "^15.0.0"
+    "chai": "^4.3.4",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-mocha": "^9.0.0",
+    "mocha": "^9.1.2",
+    "nyc": "^15.1.0"
   },
   "dependencies": {
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "electron": "^6.1.7",
-    "moment": "^2.24.0",
-    "pug": "^2.0.4"
+    "moment": "^2.27.0",
+    "pug": "^3.0.0"
   }
 }
