@@ -75,6 +75,7 @@ footer {
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
+  -webkit-app-region: drag;
 }
 
 footer>div {
