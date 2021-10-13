@@ -2,6 +2,31 @@
 
 ## [unreleased]
 
+## [3.0.0-dev] - Dev-Only; Electron update and major re-structuring
+
+Many changes necessitated as part of updating Electron from v6 to v12 (oldest still-supported version [to limit the number of possible breaking changes, of which there are many]). Notably there's been a major restructuring of the three main Electron processes and their roles. Previously the code was all in renderer, which had access to all the Node APIs. With the update (because of security and best practices) most of that code needed to be removed to Main or Preload in order to be able to access those APIs, as well as the utility functions in `/utils`. The rewrite also necessitated using IPC (inter-process communication) to handle function transitions and passing back and forth functions. Libraries such as Pug for templating and moment/date-fns can't be required into the browser environment, so any functions provided by those libraries or by functions I've written need to be explicitly passed in via Electron's ContextBridge in `preload.js`.
+
+### Architecture changes
+
+API fetching and data processing moved to main process. DOM functionality provided by the browser environment no longer available to the data processing utility functions (used to parse XML), so a new dependency (@xmldom/xmldom) has been added to cover for the missing DOMParser functionality. This replacement is mostly drop-in and package size hasn't significantly increased.
+
+### Core Dependency Updates
+
+- axios 0.19.2 👉 0.22.0
+- dotenv 8.2.0 👉 10.0.0
+- pug 3.0.0 👉 3.0.2
+- electron 6.1.7 👉 12.2.1
+
+### Moment.js deprecated
+
+Began removal of moment.js in favor of using format from date-fns, which is a lighter-weight Moment replacement. This necessitated refactoring the format string templates and using different functions compared to what was available in Moment.js. There are still many places that Moment is referenced though.
+
+### Minor Changes
+
+- Added minor change to css to re-enable window dragging (was enabled by default in electron v6, but not in 12, apparently). Footer designated as a draggable area. This is really only relevant for desktop use/development testing.
+- `.dockerignore`: Added more files to be excluded; Fixed rules that weren't working.
+- Patched errorBackOff() so that it incrases error backoff rate at expected intervals, rather than immediately jumping to the MAX_REFRESH_INTERVAL.
+
 ## [2.1.3-dev] - Dev-only
 
 Updated README due to changes in Balena ("Applications" 👉 "Fleets")

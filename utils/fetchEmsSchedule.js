@@ -1,6 +1,7 @@
 const axios = require('axios');
 const moment = require('moment');
 const pug = require('pug');
+const { DOMParser } = require('@xmldom/xmldom');
 
 const axiosInstance = axios.create({
   baseURL: process.env.EMS_API_URL,
@@ -42,12 +43,10 @@ function processEmsApiXml(xmlHell, targetWrapperNode) {
   const parser = new DOMParser();
   // First pass; Gets an XML document, but only with the outer real XML processed.
   const xmlGarbageDoc = parser.parseFromString(xmlHell, 'text/xml');
-  // Get the inner escaped XML data returned from the server
-  const escapedXMLText = xmlGarbageDoc.getElementsByTagName(targetWrapperNode)[0].innerHTML;
-  // Parse the escaped text as if it were escaped HTML to get a new DOM Document
-  const converted = parser.parseFromString(escapedXMLText, 'text/html');
+  // Get the inner XML data returned from the server
+  const xmlText = xmlGarbageDoc.getElementsByTagName(targetWrapperNode)[0].textContent;
   // Now convert the text content of the converted document into XML DOM Nodes
-  const xmlData = parser.parseFromString(converted.documentElement.textContent, 'text/xml');
+  const xmlData = parser.parseFromString(xmlText, 'text/xml');
   // xmlData at this point can be queried as normal XML Document.
   // Return an array of the 'Data' nodes from the API for actual parsing for display.
   const dataArray = [].slice.call(xmlData.getElementsByTagName('Data'));
@@ -58,16 +57,16 @@ function parseDataForDisplay(xmlHell) {
   const bookings = processEmsApiXml(xmlHell, 'GetBookingsResult');
   let displayData = bookings.map((bookingElements) => {
     try {
-      const bookStart = bookingElements.getElementsByTagName('TimeBookingStart')[0].innerHTML;
+      const bookStart = bookingElements.getElementsByTagName('TimeBookingStart')[0].textContent;
       return {
         eventDateIdentity: moment(bookStart).format('ddd MMM Do'),
-        eventName: bookingElements.getElementsByTagName('EventName')[0].innerHTML,
-        room: bookingElements.getElementsByTagName('RoomCode')[0].innerHTML,
-        eventStatusId: bookingElements.getElementsByTagName('StatusID')[0].innerHTML,
+        eventName: bookingElements.getElementsByTagName('EventName')[0].textContent,
+        room: bookingElements.getElementsByTagName('RoomCode')[0].textContent,
+        eventStatusId: bookingElements.getElementsByTagName('StatusID')[0].textContent,
         bookStart,
-        eventStart: bookingElements.getElementsByTagName('TimeEventStart')[0].innerHTML,
-        eventEnd: bookingElements.getElementsByTagName('TimeEventEnd')[0].innerHTML,
-        bookEnd: bookingElements.getElementsByTagName('TimeBookingEnd')[0].innerHTML,
+        eventStart: bookingElements.getElementsByTagName('TimeEventStart')[0].textContent,
+        eventEnd: bookingElements.getElementsByTagName('TimeEventEnd')[0].textContent,
+        bookEnd: bookingElements.getElementsByTagName('TimeBookingEnd')[0].textContent,
       };
     } catch (e) {
       return undefined;
