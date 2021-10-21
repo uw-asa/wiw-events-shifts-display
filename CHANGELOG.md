@@ -1,6 +1,12 @@
 # Changelog
 
-## [unreleased]
+## [3.0.1-dev] - Dev-only; minor patches to dependencies
+
+- Dependency Updates
+  - mocha 9.1.2 -> 9.1.3
+  - eslint-plugin-import 2.24.2 -> 2.25.2
+  - eslint 7.32.0 -> 8.0.1
+  - axios 0.22.0 -> 0.23.0
 
 ## [3.0.0-dev] - Dev-Only; Electron update and major re-structuring
 
