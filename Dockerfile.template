@@ -2,7 +2,7 @@
 
 # Balena base image reference: https://www.balena.io/docs/reference/base-images/base-images/
 # Device type pulled based on template variable for targeted fleet. Note that Fleets must share a similar architecture.
-FROM balenalib/%%BALENA_MACHINE_NAME%%-ubuntu-node:15.10.0-bionic
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian-node
 
 # Avoid debconf from asking about keyboard config - there is no keyboard - set debconf to noninteractive
 ENV DEBIAN_FRONTEND noninteractive
@@ -17,21 +17,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libxcb-image0 \
   libxcb-util1 \
   xdg-utils \
-  libdbus-1-dev \
-  libgtk2.0-dev \
-  libnotify-dev \
+  libdbus-1-3 \
+  libgtk-3-0 \
+  # libnotify-dev \
   # libgnome-keyring-dev \
-  libgconf2-dev \
-  libasound2-dev \
-  libcap-dev \
-  libcups2-dev \
-  libxtst-dev \
+  # libgconf2-dev \
+  libasound2 \
+  libcap2 \
+  # libcups2-dev \
+  # libxtst-dev \
   libxss1 \
-  libnss3-dev \
-  libsmbclient \
+  libnss3 \
+  # libsmbclient \
   libssh-4 \
   fbset \
-  libexpat-dev \
+  # libexpat-dev \
   # libraspberrypi-bin \
   && rm -rf /var/lib/apt/lists/*
 
@@ -51,7 +51,7 @@ RUN echo "#!/bin/bash" > /etc/X11/xinit/xserverrc \
 # Move package.json to filesystem
 COPY ./package.json .
 
-RUN npm install && npm cache clean --force && rm -rf /tmp/*
+RUN npm install --production --force && npm cache clean --force && rm -rf /tmp/*
 
 # Test to ensure that electron was installed by checking if the electron binaries were downloaded to the /dist/ folder
 RUN test -d "./node_modules/electron/dist/" || exit 1

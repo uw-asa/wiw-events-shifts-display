@@ -14,10 +14,17 @@ require('dotenv').config();
 let mainWindow;
 
 function createWindow() {
+  const {
+    DISPLAY_PX_X,
+    DISPLAY_PX_Y,
+  } = process.env;
+  const WIDTH = DISPLAY_PX_X ? +DISPLAY_PX_X : null;
+  const HEIGHT = DISPLAY_PX_Y ? +DISPLAY_PX_Y : null;
+
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 1920,
-    height: 1080,
+    width: WIDTH,
+    height: HEIGHT,
     frame: false,
     // fullscreen: true,
     webPreferences: {
@@ -84,7 +91,7 @@ const {
 /**
  * Uses the passed data function to gather data. Handles a couple of error conditions.
  *
- * @param {*} dataFn - Data handling function to call to gather data. Data function
+ * @param {Function} dataFn - Data handling function to call to gather data. Data function
  * should do some preprocessing of the initial data returned from that specific API.
  * @returns - result.data payload from data function.
  */
@@ -108,8 +115,8 @@ function getDataFromEndpoint(dataFn) {
 /** Function handles calling and marking up data from given data source.
  * Accepts a data fetching function and a markup function. Used when rendering single-mode.
  *
- * @param {function} dataFn - data fetch and initial processing function
- * @param {function} markupFn - template to use on each piece of data
+ * @param {Function} dataFn - data fetch and initial processing function
+ * @param {Function} markupFn - template to use on each piece of data
  * @returns {Promise} marked up HTML on success
  */
 function renderDataHtmlSingle(dataFn, markupFn) {
@@ -127,10 +134,10 @@ function renderDataHtmlSingle(dataFn, markupFn) {
  * to fire off asynchronous fetches and then renders the resulting data into a single HTML
  * block using the dual rendering template.
  *
- * @param {*} lDataFn - Data fetching function to gather information for the left column
- * @param {*} lMarkupFn - Data markup function for left column cards using data from lDataFn
- * @param {*} rDataFn - Data fetching function to gather information for the right column
- * @param {*} rMarkupFn - Data markup function for right column cards using data from rDataFn
+ * @param {Function} lDataFn - Data fetching function to gather information for the left column
+ * @param {Function} lMarkupFn - Data markup function for left column cards using data from lDataFn
+ * @param {Function} rDataFn - Data fetching function to gather information for the right column
+ * @param {Function} rMarkupFn - Data markup function for right column cards using data from rDataFn
  * @returns {Promise} Promise that will resolve with the combined HTML content to be injected
  *  into the main content of the display
  */
@@ -138,9 +145,9 @@ function renderDataHtmlDual(lDataFn, lMarkupFn, rDataFn, rMarkupFn) {
   const lResult = getDataFromEndpoint(lDataFn);
   const rResult = getDataFromEndpoint(rDataFn);
   return Promise.all([lResult, rResult]).then((values) => dualSourceTemplate({
-    contentLeft: lMarkupFn(values[0]).join(''),
+    contentLeft: lMarkupFn(values[0], mainWindow.getBounds().width).join(''),
     leftHeader: DISPLAY_LEFT_COLUMN_TITLE,
-    contentRight: rMarkupFn(values[1]).join(''),
+    contentRight: rMarkupFn(values[1], mainWindow.getBounds().width).join(''),
     rightHeader: DISPLAY_RIGHT_COLUMN_TITLE,
   }));
 }
@@ -149,7 +156,10 @@ function renderDataHtmlDual(lDataFn, lMarkupFn, rDataFn, rMarkupFn) {
  * Helper function that uses configuration options to determine which functions to use
  * for data gathering and markup of that resulting data.
  *
- * @param {String} modeSetting - the mode setting pulled from Config Vars
+ * @param {String} modeSetting - The mode setting pulled from Config Vars
+ * @param {Object} SETTINGS_DATA_MAPPING - Object that maps Strings set in Config Vars to
+ * strings representing the data fetch function to be used for that mode setting
+ * @param {Array} ACCEPTABLE_SETTINGS - List of acceptable settings
  * @returns [{dataFunction}, {markupFunction}]
  */
 function determineSideModeRenderFunctions(modeSetting, SETTINGS_DATA_MAPPING, ACCEPTABLE_SETTINGS) {
@@ -157,11 +167,11 @@ function determineSideModeRenderFunctions(modeSetting, SETTINGS_DATA_MAPPING, AC
     // set Labor
     return [getWiwSchedule, markupLaborResults];
   }
-  if (SETTINGS_DATA_MAPPING[modeSetting] === 'WIW') {
+  if (SETTINGS_DATA_MAPPING[modeSetting] === 'WIW' && modeSetting === ACCEPTABLE_SETTINGS[1]) {
     // set Events/labor
     return [getWiwSchedule, markupEventShiftResults];
   }
-  if (SETTINGS_DATA_MAPPING[modeSetting] === 'EMS') {
+  if (SETTINGS_DATA_MAPPING[modeSetting] === 'EMS' && modeSetting === ACCEPTABLE_SETTINGS[2]) {
     // set EMS events list
     return [getEmsSchedule, markupEventListResults];
   }

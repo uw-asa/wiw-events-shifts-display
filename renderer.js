@@ -8,7 +8,7 @@ const {
 } = window.preload.envVars;
 
 // set corner title
-document.getElementById('title').firstElementChild.innerHTML = DISPLAY_CORNER_TITLE || 'Events Display';
+document.getElementById('title').innerHTML = DISPLAY_CORNER_TITLE || 'Pi Display';
 
 // pull in IPC function references
 const {
@@ -30,8 +30,8 @@ const {
  * being detected. Once a successful render happens, the render interval is reset to it's initial
  * value.
  *
- * @param {*} interval - Time till next render cycle (ms)
- * @param {*} initialInterval - Original / base render interval (ms)
+ * @param {Number} interval - Time till next render cycle (ms)
+ * @param {Number} initialInterval - Original / base render interval (ms)
  */
 function handleReload(interval, initialInterval) {
   // Display the active reload interval in the page footer
