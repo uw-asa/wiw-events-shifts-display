@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.1.1] - Minor Patches to Dev Dependencies
+
+- eslint 8.1.0 -> 8.2.0
+- eslint-config-airbnb-base 14.2.1 -> 15.0.0
+- eslint-plugin-import 2.25.2 -> 2.25.3
+
 ## [3.1.0] - UI changes: Adaptive layout
 
 - Removed the old dist. files for Bootstrap 4.3.1 and jquery 3.4.1.
