@@ -1,17 +1,18 @@
 div(class='card mx-0 mx-lg-2 d-inline-block w-100 eventShiftCard')
   div.card-header.mx-lg-2
-    h4.card-title #{displayDate}
-  div.card-body.mx-lg-4.pt-0
-    div.d-inline-block.w-100
-      each event in events
-        div.row
-          div.col-9.me-auto
-            h5.card-title.overflow-hidden.text-nowrap #{event.title}
-          div.col-3
-            h6.card-title.overflow-visible.text-nowrap #{event.location}
-        each shift in event.shifts
-          ul(class='list-group list-group-flush list-unstyled mb-sm-1')
-            if shift.now
-              li.shift-item.pl-lg-2.font-weight-bold= shift.str
-            else
-              li.shift-item.pl-lg-2= shift.str
+      h4.card-title #{displayDate}
+each event in events
+  div(class='card mx-0 mx-lg-2 d-inline-block w-100 eventShiftCard')
+    div.card-body.mx-lg-4.pt-0
+      div.d-inline-block.w-100
+          div.row
+            div.col-9.me-auto
+              h5.card-title.overflow-hidden.text-nowrap #{event.title}
+            div.col-3
+              h6.card-title.overflow-visible.text-nowrap #{event.location}
+          each shift in event.shifts
+            ul(class='list-group list-group-flush list-unstyled mb-sm-1')
+              if shift.now
+                li.shift-item.pl-lg-2.font-weight-bold= shift.str
+              else
+                li.shift-item.pl-lg-2= shift.str
