@@ -1,23 +1,27 @@
-div(class='card m-1 p-0 d-inline-block w-100')
-  div.card-header
-    h3.card-title #{cardTitle}
-  div.card-body.ml-0
+div(class='card mx-0 mx-lg-2 p-0 d-inline-block w-100 eventDateCard')
+  div.card-header.mx-lg-2
+    h4.card-title #{cardTitle}
+  div.card-body.mx-lg-4.pt-0
     table(class='table table-sm event-date-table')
       tbody
         each event in events
           if event.now
             tr(style=`background-color: ${event.highlight ? event.highlight : '#00000000'}`).font-weight-bold.shift-item
-              td.room-code #{event.room}
-              td.text-truncate.event-title #{event.title}
-              td.time-width #{event.bookStart}
-              td.time-width #{event.eventStart}
-              td.time-width #{event.eventEnd}
-              td.time-width #{event.bookEnd}
+              td.d-table-cell.room-code #{event.room}
+                div.d-block.d-lg-none #{event.bookStart}
+              td.d-table-cell.text-truncate.event-title #{event.title}
+                div.d-block.d-lg-none #{event.bookEnd}
+              td.time-width.d-none.d-lg-table-cell #{event.bookStart}
+              td.time-width.d-none.d-lg-table-cell #{event.eventStart}
+              td.time-width.d-none.d-lg-table-cell #{event.eventEnd}
+              td.time-width.d-none.d-lg-table-cell #{event.bookEnd}
           else
             tr(style=`background-color: ${event.highlight ? event.highlight : '#00000000'}`).shift-item
-              td.room-code #{event.room}
-              td.text-truncate.event-title #{event.title}
-              td.time-width #{event.bookStart}
-              td.time-width #{event.eventStart}
-              td.time-width #{event.eventEnd}
-              td.time-width #{event.bookEnd}
+              td.d-table-cell.room-code #{event.room}
+                div.d-block.d-lg-none #{event.bookStart}
+              td.d-table-cell.text-truncate.event-title #{event.title}
+                div.d-block.d-lg-none #{event.bookEnd}
+              td.time-width.d-none.d-lg-table-cell #{event.bookStart}
+              td.time-width.d-none.d-lg-table-cell #{event.eventStart}
+              td.time-width.d-none.d-lg-table-cell #{event.eventEnd}
+              td.time-width.d-none.d-lg-table-cell #{event.bookEnd}

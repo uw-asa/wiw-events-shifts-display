@@ -1,10 +1,10 @@
-div(class='card m-1 d-inline-block w-100')
-  div.card-header
-    h3(class='card-title text-truncate') #{cardTitle}
-  div.card-body
+div(class='card mx-0 mx-lg-2 d-inline-block w-100 eventShiftCard')
+  div.card-header.mx-lg-2
+    h4(class='card-title text-truncate') #{displayDate}: #{title}
+  div.card-body.mx-lg-4.pt-0
     ul(class='list-group list-group-flush list-unstyled')
       each shift in shifts
         if shift.now
-          li.shift-item.font-weight-bold= shift.str
+          li.shift-item.pl-lg-2.font-weight-bold= shift.str
         else
-          li.shift-item= shift.str
+          li.shift-item.pl-lg-2= shift.str

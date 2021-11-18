@@ -1,0 +1,47 @@
+/* This file to contain css overrides and rules targeting specific content. */
+
+
+@media (min-width: 992px) {
+  .shift-item {
+    font-size: 24px;
+    /* padding-left: 2rem; */
+  }
+
+  .shift-item-sm {
+    font-size: 18px;
+  }
+}
+
+.card, .card div {
+  background-color: transparent !important;
+  border: none !important;
+  /* margin-left: 2rem; */
+  /* margin-right: 2rem; */
+}
+
+.card-body {
+  padding-top: 0 !important;
+}
+
+td.time-width {
+/*   min-width: 60px; */
+}
+
+td.room-code {
+/*   min-width: 75px; */
+}
+
+td.event-title {
+  /* min-width: 475px; */
+  /* max-width: 475px; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+#reload-interval {
+  position: fixed;
+  bottom: 5px;
+  left: 8rem;
+}
