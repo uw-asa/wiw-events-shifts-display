@@ -5,6 +5,6 @@ div(class='card mx-0 mx-lg-2 d-inline-block w-100 eventShiftCard')
     ul(class='list-group list-group-flush list-unstyled')
       each shift in shifts
         if shift.now
-          li.shift-item.pl-lg-2.font-weight-bold= shift.str
+          li.shift-item.pl-lg-2.fw-bold= shift.str
         else
           li.shift-item.pl-lg-2= shift.str
