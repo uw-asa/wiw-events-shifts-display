@@ -4,12 +4,15 @@
     <!-- Required meta tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
-    <title>Events Schedule</title>
-    <link rel="stylesheet" type="text/css" href="index.css">
-    <link rel="stylesheet" type="text/css" href="static/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+    <!-- note, Title bar never displays -->
+    <title>PiDisplay</title>
+    <link rel="stylesheet" type="text/css" href="static/css/index.css">
+    <link rel="stylesheet" type="text/css" href="static/css/content.css">
+
+    <link rel="stylesheet" type="text/css" href="static/bootstrap-5.1.2-dist/css/bootstrap.min.css">
     	
-    <script type="text/javascript" src="static/jquery-3.4.1/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="static/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="static/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="static/bootstrap-5.1.2-dist/js/bootstrap.min.js"></script>
   </head>
 
   <body>
@@ -17,19 +20,20 @@
     </div>
 
     <footer>
-      <div class="container-fluid">
-        <div class="row">
+      <div class="container-fluid px-lg-2">
+        <div id="footer-container" class="row align-items-center">
           <div class="col">
             <span id="reload-interval"></span>
           </div>
           <div id="clock" class="col">
             <!-- clock -->
           </div>
-          <div id="title" class="col">
-            <h1 class="text-right"></h1>
+          <div id="titleContainer" class="col">
+            <h1 id="title" class="text-end"></h1>
           </div>
         </div>
       </div>
+      <div id="title-bg"></div>
     </footer>
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>

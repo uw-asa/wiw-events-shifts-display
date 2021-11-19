@@ -127,27 +127,27 @@ There are 2 options; build in the cloud with Balena Cloud or build the image loc
 
 Use Ensure files are up to date and that you are on the correct code branch. Run tests to ensure the code is ready for deployment. Run the app locally on the development machine with `npm start` and make sure things appear correct, check the dev console while the app is running with `Ctrl+Shift+I` and look for http errors or console errors. You also must install the [Balena CLI][1].
 
-### Locally with Docker
+### Locally with Docker (still uses Balena CLI to initiate build env)
 
-1. Open a console to the project root (where `Dockerfile` and `package.json` are)
+1. Open a console to the project root (where `Dockerfile.template` and `package.json` are)
 2. Log into the Balena console with `balena login`
 3. Build the image
 
-> `balena build --application [BALENA APP NAME] --logs .`
+> `balena build --fleet [BALENA FLEET NAME] --logs .`
 
-**Note(s):** Don't forget the trailing `.` which designates the current directory as the source for the code. Substitute in the name of your app for `[BALENA APP NAME]` which corresponds to the application name on the Balena Cloud dashboard. Add `--logs` to see the complete build details. For complete CLI documentation and other options see the [Balena CLI documentation][2].
+**Note(s):** Don't forget the trailing `.` which designates the current directory as the source for the code. Substitute in the name of your fleet for `[BALENA FLEET NAME]` which corresponds to the application name on the Balena Cloud dashboard. Add `--logs` to see the complete build details. For complete CLI documentation and other options see the [Balena CLI documentation][2].
 
 4. Push the built image to Balena Cloud
 
-> `balena deploy [BALENA APP NAME]`
+> `balena deploy [BALENA FLEET NAME]`
 
 ### Building with Balena Cloud
 
-1. Open a console to the project root (where `Dockerfile` and `package.json` are)
+1. Open a console to the project root (where `Dockerfile.template` and `package.json` are)
 2. Log into the Balena console with `balena login`
 3. Push code to Balena's build servers and wait for the image to be deployed automatically
 
-> `balena push [BALENA APP NAME] .`
+> `balena push [BALENA FLEET NAME] .`
 
 ## Resources for Learning Electron
 

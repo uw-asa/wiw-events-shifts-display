@@ -1,0 +1,119 @@
+/* This file to contain global css overrides and css that affects the general
+body of the display. For example:
+- Colors
+- Backgrounds
+- Font choices
+- Page mechanics
+- sizing calculations
+*/
+
+:root {
+  --footer-height: 80px;
+}
+
+@media (min-width: 992px) {
+  :root {
+    --footer-height: 118px;
+  }
+}
+
+html {
+  background-color: black;
+}
+
+div#main {
+  background-image: url("../img/UW-background-body.png");
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+}
+
+span, .card-title, .shift-item, .shift-item-sm {
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+.shift-item {
+  color: lightgray;
+}
+
+#titleContainer h1, #clock h4 {
+  color: #4b2e83
+}
+
+#content {
+  -webkit-column-count: 2; /* Chrome, Safari, Opera */
+  -moz-column-count: 2; /* Firefox */
+  column-count: 2;
+  overflow: hidden;
+  height: calc(100vh - var(--footer-height));
+}
+
+.content-column {
+  --header-height: 42px;
+  overflow: hidden;
+  height: calc(100vh - var(--footer-height));
+}
+
+.column-header {
+  height: var(--header-height);
+}
+
+.headed-content {
+  height: calc(100vh - var(--footer-height) - var(--header-height));
+}
+
+.headed-content>div {
+  height: calc(100vh - var(--footer-height) - var(--header-height));
+}
+
+footer {
+  position: fixed; /* from image size */
+  bottom: 0px; /* from image size */
+  left: 0px; /* from image size */
+  background-image: url("../img/UW-background-footer-no-hashes.png");
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: cover;
+  -webkit-app-region: drag;
+  height: var(--footer-height);
+}
+
+#footer-container {
+  height: var(--footer-height);
+}
+
+div#title-bg {
+  position: fixed;
+  width: 33%;
+  right: 0px;
+  bottom: 0px;
+  background-image: url("../img/UW-background-footer-only-hashes.png");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  z-index: -1;
+  height: var(--footer-height);
+}
+
+
+/*
+REFERENCE: DEFAULT BOOTSTRAP BREAKPOINTS
+// X-Small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) { ... }
+*/
