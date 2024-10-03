@@ -75,7 +75,9 @@ const { getWiwSchedule } = require('./utils/fetchWiwSchedule');
 const getEmsSchedule = require('./utils/fetchEmsSchedule');
 const markupEventShiftResults = require('./utils/renderEventShifts');
 const markupLaborResults = require('./utils/renderLaborCondensed');
-const markupEventListResults = require('./utils/renderEventList');
+const markupEmsEventListResults = require('./utils/renderEmsEventList');
+const { getMazevoSchedule } = require('./utils/fetchMazevoSchedule');
+const markupMzvEventListResults = require('./utils/renderMazevoEventList');
 
 // pull in template renderers
 const dualSourceTemplate = pug.compileFile('./templates/body2column-DualSource.pug');
@@ -173,7 +175,11 @@ function determineSideModeRenderFunctions(modeSetting, SETTINGS_DATA_MAPPING, AC
   }
   if (SETTINGS_DATA_MAPPING[modeSetting] === 'EMS' && modeSetting === ACCEPTABLE_SETTINGS[2]) {
     // set EMS events list
-    return [getEmsSchedule, markupEventListResults];
+    return [getEmsSchedule, markupEmsEventListResults];
+  }
+  if (SETTINGS_DATA_MAPPING[modeSetting] === 'MZV' && modeSetting === ACCEPTABLE_SETTINGS[3]) {
+    // set Mazevo Events List
+    return [getMazevoSchedule, markupMzvEventListResults];
   }
   throw new Error('Mode setting error; unable to determine mode setting from env vars.');
 }
