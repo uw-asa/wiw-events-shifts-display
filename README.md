@@ -23,33 +23,14 @@ Note: If you're using Linux Bash for Windows, [see this guide](https://www.howto
 
 Sample configuration file provided in `sample.env`
 
-- `WIW_API_TOKEN=when-i-work-login-token`
+#### Layout and Display Settings
 
-  Sets the login token for the When I Work API. Necessary to load any data from When I Work.
+- `DISPLAY_PX_X=1920`
+- `DISPLAY_PX_Y=1080`
 
-- `WIW_API_URL=https://api.wheniwork.com/2/`
-
-  Base URL for When I Work's API. Shouldn't change too much.
-
-- `EMS_API_USER=username`
-
-  Username to pass to EMS for accessing the API.
-
-- `EMS_API_PASS=password`
-
-  Password to pass to EMS for accessing the API.
-
-- `EMS_API_URL=https://base.url/EMSAPI/`
-
-  Root URL for the EMSAPI.
-
-- `NOTES_TITLE_SEPARATOR=-`
-
-  Titles for events are in the notes for shifts in When I Work for our particular environment. This is subject to change, and thus the separator can be configured. Works in concert with `SEPARATOR_WHITESPACE`.
-
-- `SEPARATOR_WHITESPACE=true`
-
-  Configures whether or not the separator is surrounded by whitespace or not. In this example the above separator would be a dash surrounded by whitespace.
+  Optional. Device-specific Display specification. Used when creating the display window to ensure
+  it's the appropriate size for the attached display. Only needed if the machine cannot determine the
+  display dimensions on it's own.
 
 - `MAX_REFRESH_INTERVAL=300`
 
@@ -63,6 +44,7 @@ Sample configuration file provided in `sample.env`
   - LABOR = When I Work Labor (condensed view)
   - EVENTS = When I Work labor events associated with an event
   - EMS-EVENTS = Events scheduled in EMS (regardless of labor assignment)
+  - MZV-EVENTS = Events scheduled in Mazevo
 
   When both Left and Right render modes are the same, the screen will render data across both columns (top to bottom, left to right). When the settings are different, each column will render it's data in the set column only (top-to-bottom).
 
@@ -75,6 +57,16 @@ Sample configuration file provided in `sample.env`
 
   Sets the display title in the corner of the screen. Defaults to 'Events Display'.
 
+#### API Data Source: When I Work
+
+- `WIW_API_TOKEN=when-i-work-login-token`
+
+  Sets the login token for the When I Work API. Necessary to load any data from When I Work.
+
+- `WIW_API_URL=https://api.wheniwork.com/2/`
+
+  Base URL for When I Work's API. Shouldn't change too much.
+
 - `WIW_API_LOCATION=123456`
 
   API Location ID to search When I Work for shift data. Can be set to a comma-delimited list, such as `123456,234567,345678` to get shifts for multiple locations at once.
@@ -83,29 +75,77 @@ Sample configuration file provided in `sample.env`
 
   How many days worth of data to query from the API each time. Defaults to 7.
 
+- `LABOR_MODE_CUSTOM_NAMING=123456:Event,234567:Office`
+
+  Naming to differentiate When I Work locations from each other when using the 'LABOR' layout, which has shifts in a condensed form.
+
+- `NOTES_TITLE_SEPARATOR=-`
+
+  Titles for events are in the notes for shifts in When I Work for our particular environment. This is subject to change, and thus the separator can be configured. Works in concert with `SEPARATOR_WHITESPACE`.
+
+- `SEPARATOR_WHITESPACE=true`
+
+  Configures whether or not the separator is surrounded by whitespace or not. In this example the above separator would be a dash surrounded by whitespace.
+
+#### API Data Source: EMS
+
+- `EMS_API_USER=username`
+
+  Username to pass to EMS for accessing the API.
+
+- `EMS_API_PASS=password`
+
+  Password to pass to EMS for accessing the API.
+
+- `EMS_API_URL=https://base.url/EMSAPI/`
+
+  Root URL for the EMSAPI.
+
 - `EMS_LOOKAHEAD_DAYS=5`
 
   How many days worth of data to query from the API each time. Defaults to 7.
 
 - `EMS_BUILDINGS=1,2,3,4`
 
-  Building IDs in EMS to gather booking / event data for.
+  Building IDs in EMS to gather booking / event data for. Comma-separated, no whitespace.
 
 - `EMS_STATUSES=2,3,4,5`
 
-  Status IDs in EMS to gather booking / event data for.
+  Status IDs in EMS to gather booking / event data for. Comma-separated, no whitespace.
 
 - `EMS_EVENT_TYPES=1,2,3,4,5,6,7,8,9`
 
-  Event Type IDs in EMS to gather booking / event data for.
+  Event Type IDs in EMS to gather booking / event data for. Comma-separated, no whitespace.
 
-- `LABOR_MODE_CUSTOM_NAMING=123456:Event,234567:Office`
-
-  Naming to differentiate When I Work locations from each other when using the 'LABOR' layout, which has shifts in a condensed form.
-  
 - `EMS_Status_ROW_HIGHLIGHT=2:#ffffff50,3:#aabbccdd`
 
   Set row highlight colors (HEXA) (hex w/ alpha) associated event status ID (ID first). Applies to EMS event date list only. Separate each state setting from the color value by commas (`,`). Separate status ID and color code by colons (`:`).
+
+#### API Data Source: Mazevo
+
+- `MZV_API_URL=https://mazevo_public_API_URL/api/`
+
+  Mazevo URL to gather data from.
+
+- `MZV_API_KEY=somehexstring`
+
+  Mazevo API Key. Generated on the Mazevo Web console.
+
+- `MZV_LOOKAHEAD_DAYS=5`
+
+  How many days worth of data to query from the API each time. Defaults to 7.
+
+- `MZV_BUILDINGS=1,2,3,4`
+
+  Building IDs in Mazevo to gather booking / event data for. Comma-separated, no whitespace.
+
+- `MZV_STATUSES=2,3,4,5`
+
+  Status IDs in Mazevo to gather booking / event data for. Comma-separated, no whitespace.
+
+- `MZV_EVENT_TYPES=1,2,3,4,5,6,7,8,9`
+
+  Event Type IDs in Mazevo to gather booking / event data for. Comma-separated, no whitespace.
 
 ## Updates
 
