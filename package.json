@@ -1,7 +1,7 @@
 {
   "name": "when-i-work-events-shifts-display",
-  "version": "3.1.1",
-  "description": "Shift display for Events Services, pulling data from the When I Work API",
+  "version": "3.2.0",
+  "description": "Shift display for Events Services, pulling data from When I Work, EMS, or Mazevo",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -18,7 +18,8 @@
     "digital",
     "signage",
     "wheniwork",
-    "ems"
+    "ems",
+    "mazevo"
   ],
   "author": "Chase Sawyer",
   "license": "MIT",

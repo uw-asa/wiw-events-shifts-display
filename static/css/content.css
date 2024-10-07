@@ -24,20 +24,25 @@
 }
 
 td.time-width {
-/*   min-width: 60px; */
+  min-width: 72px;
+  /* width: 80px; */
+}
+
+td.event-title {
+  width: 100%;
 }
 
 td.room-code {
-/*   min-width: 75px; */
+   min-width: 75px;
 }
 
 td.event-title {
   /* min-width: 475px; */
-  /* max-width: 475px; */
+  max-width: 475px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100%;
+  /* max-width: 100%; */
 }
 
 #reload-interval {

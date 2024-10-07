@@ -18,15 +18,17 @@ const {
 let renderModeSingle = true;
 
 // Configure rendering mode and constants for control:
-// options for DISPLAY_RENDER_MODEs: "LABOR", "EVENTS", or "EMS-EVENTS"
+// options for DISPLAY_RENDER_MODEs: "LABOR", "EVENTS", "EMS-EVENTS", or "MZV-EVENTS"
 // LABOR = When I Work Labor (condensed view)
 // EVENTS = When I Work labor events associated with an event
 // EMS-EVENTS = Events scheduled in EMS (regardless of labor assignment)
-const ACCEPTABLE_SETTINGS = ['LABOR', 'EVENTS', 'EMS-EVENTS'];
+// MZV-EVENTS = Events scheduled in Mazevo (regardless of labor assignment)
+const ACCEPTABLE_SETTINGS = ['LABOR', 'EVENTS', 'EMS-EVENTS', 'MZV-EVENTS'];
 const SETTINGS_DATA_MAPPING = {
   LABOR: 'WIW',
   EVENTS: 'WIW',
   'EMS-EVENTS': 'EMS',
+  'MZV-EVENTS': 'MZV',
 };
 if (DISPLAY_RENDER_MODE_LEFT !== DISPLAY_RENDER_MODE_RIGHT) {
   renderModeSingle = false;
