@@ -8,9 +8,7 @@ div(class='card mx-0 mx-lg-2 p-0 d-inline-block w-100 eventDateCard')
           if event.now
             tr(style=`background-color: ${event.highlight ? event.highlight : '#00000000'}`).fw-bold.shift-item
               td.d-table-cell.room-code #{event.room}
-                div.d-block.d-lg-none #{event.bookStart}
               td.d-table-cell.text-truncate.event-title #{event.title}
-                div.d-block.d-lg-none #{event.bookEnd}
               td.time-width.d-none.d-lg-table-cell #{event.bookStart}
               td.time-width.d-none.d-lg-table-cell #{event.eventStart}
               td.time-width.d-none.d-lg-table-cell #{event.eventEnd}
@@ -18,9 +16,7 @@ div(class='card mx-0 mx-lg-2 p-0 d-inline-block w-100 eventDateCard')
           else
             tr(style=`background-color: ${event.highlight ? event.highlight : '#00000000'}`).shift-item
               td.d-table-cell.room-code #{event.room}
-                div.d-block.d-lg-none #{event.bookStart}
               td.d-table-cell.text-truncate.event-title #{event.title}
-                div.d-block.d-lg-none #{event.bookEnd}
               td.time-width.d-none.d-lg-table-cell #{event.bookStart}
               td.time-width.d-none.d-lg-table-cell #{event.eventStart}
               td.time-width.d-none.d-lg-table-cell #{event.eventEnd}

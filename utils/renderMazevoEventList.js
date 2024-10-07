@@ -40,7 +40,7 @@ function markupResults(data) {
   function getEventParamsObject(item) {
     return {
       now: moment().isBetween(item.setupStart, item.teardownEnd, 'minute'),
-      room: item.room,
+      room: item.room.split(' ')[1], // Display only the room number portion
       title: item.eventName, // NOTE: May need to truncate this to certain limit
       bookStart: formatTimes(item.setupStart),
       eventStart: formatTimes(item.eventStart),
