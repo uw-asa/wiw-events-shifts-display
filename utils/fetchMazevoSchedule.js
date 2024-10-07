@@ -23,7 +23,7 @@ try {
   } else {
     eventTypeIDs = null;
   }
-  if (process.env.MZV_ROOM) {
+  if (process.env.MZV_ROOMS) {
     roomIDs = process.env.MZV_ROOMS.split(',').map((x) => parseInt(x, 10));
   } else {
     roomIDs = null;
@@ -43,10 +43,10 @@ function parseDataForDisplay(jsonData) {
   let displayData = jsonData.map((item) => {
     let roomShortCode = '';
     try {
-      roomShortCode = item.roomDescription.match(/([A-Z]{3} \w{3,4})/);
+      [roomShortCode] = item.roomDescription.match(/([A-Z]{3} \w{3,4})/);
     } catch (e) {
       // didn't get good room short code (generally this will be a TypeError)
-      roomShortCode = 'other';
+      roomShortCode = 'other room';
     }
     try {
       const start = new Date(Date.parse(item.dateTimeStart));
@@ -73,25 +73,28 @@ function parseDataForDisplay(jsonData) {
 
 function getMazevoSchedule(days = process.env.MZV_LOOKAHEAD_DAYS || 7) {
   return new Promise((resolve, reject) => {
+    const requestData = {
+      start: moment().format('YYYY-MM-DDTHH:mm:ssZ'),
+      end: moment().add(days, 'days').endOf('day').format('YYYY-MM-DDTHH:mm:ssZ'),
+      buildingIds: buildingIDs,
+      roomIds: roomIDs || [],
+      eventTypeIds: eventTypeIDs || [],
+      statusIds: statusIDs,
+      resourceIds: [],
+      bookingIds: [],
+      contactId: 0,
+      organizationId: 0,
+      explodeComboRooms: false,
+      includeRelatedRooms: false,
+      minDateChanged: null,
+      includeEventCoordinators: false,
+    };
+    // debugging request data
+    // console.log(JSON.stringify(requestData));
     axiosInstance.request({
       url: 'PublicEvent/getevents',
       method: 'post',
-      data: JSON.stringify({
-        start: moment().format('YYYY-MM-DDTHH:mm:ssZ'),
-        end: moment().add(days, 'days').endOf('day').format('YYYY-MM-DDTHH:mm:ssZ'),
-        buildingIds: JSON.stringify(buildingIDs),
-        roomIds: JSON.stringify(roomIDs),
-        eventTypeIds: JSON.stringify(eventTypeIDs),
-        statusIds: JSON.stringify(statusIDs),
-        resourceIds: [],
-        bookingIds: [],
-        contactId: 0,
-        organizationId: 0,
-        explodeComboRooms: false,
-        includeRelatedRooms: false,
-        minDateChanged: null,
-        includeEventCoordinators: false,
-      }),
+      data: JSON.stringify(requestData),
     })
       .then((response) => {
         resolve({
