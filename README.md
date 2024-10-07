@@ -147,6 +147,10 @@ Sample configuration file provided in `sample.env`
 
   Event Type IDs in Mazevo to gather booking / event data for. Comma-separated, no whitespace.
 
+- `MZV_ROOMS=1,24,86`
+
+  Room IDs from Mazevo to gather booking / event data for. Comma-separated, no whitespace.
+
 ## Updates
 
 Dependency updates: update the base image in `Dockerfile` and update application dependencies in `package.json`.
@@ -173,7 +177,7 @@ Use Ensure files are up to date and that you are on the correct code branch. Run
 2. Log into the Balena console with `balena login`
 3. Build the image
 
-> `balena build --fleet [BALENA FLEET NAME] --logs .`
+> `balena build --fleet [BALENA FLEET NAME] .`
 
 **Note(s):** Don't forget the trailing `.` which designates the current directory as the source for the code. Substitute in the name of your fleet for `[BALENA FLEET NAME]` which corresponds to the application name on the Balena Cloud dashboard. Add `--logs` to see the complete build details. For complete CLI documentation and other options see the [Balena CLI documentation][2].
 
@@ -181,13 +185,15 @@ Use Ensure files are up to date and that you are on the correct code branch. Run
 
 > `balena deploy [BALENA FLEET NAME]`
 
-### Building with Balena Cloud
+### Building with Balena Cloud (Recommended)
+
+This method tends to be more reliable and avoids local problems dependent on docker desktop being installed.
 
 1. Open a console to the project root (where `Dockerfile.template` and `package.json` are)
 2. Log into the Balena console with `balena login`
 3. Push code to Balena's build servers and wait for the image to be deployed automatically
 
-> `balena push [BALENA FLEET NAME] .`
+> `balena push [BALENA FLEET NAME]`
 
 ## Resources for Learning Electron
 
